@@ -60,7 +60,8 @@ $route['register'] = 'user/register';
 $route['ajax_register'] = 'user/ajax_register';
 $route['ajax_login'] = 'user/ajax_login';
 $route['home'] = 'home';
-$route['jQgrid'] = 'Bootgrid';
+$route['dashboard'] = 'Bootgrid';
+$route['ques-type'] = 'Bootgrid/ques_type';
 
 
 

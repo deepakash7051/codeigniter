@@ -11,76 +11,17 @@ class Bootgrid extends CI_Controller {
 
  function index()
  {
-  $this->load->view('guest/header');
-  $this->load->view('bootgrid');
+  $data['sidebar'] = $this->load->view('user/sidebar','', true);
+  $this->load->view('user/header',$data);
+  $this->load->view('user/index');
+  $this->load->view('user/footer');
  }
-
- function fetch_data()
+ function ques_type()
  {
-  $data = $this->bootgrid_model->make_query();
-  $array = array();
-  foreach($data as $row)
-  {
-   $array[] = $row;
-  }
-  $output = array(
-   'current'  => intval($_POST["current"]),
-   'rowCount'  => 10,
-   'total'   => intval($this->bootgrid_model->count_all_data()),
-   'rows'   => $array
-  );
-  echo json_encode($output);
- }
-
- function action()
- {
-  if($this->input->post('operation'))
-  {
-   $data = array(
-    'name'   => $this->input->post('name'),
-    'address'  => $this->input->post('address'),
-    'gender'  => $this->input->post('gender'),
-    'designation' => $this->input->post('designation'),
-    'age'   => $this->input->post('age')
-   );
-   if($this->input->post('operation') == 'Add')
-   {
-    $this->bootgrid_model->insert($data);
-    echo 'Data Inserted';
-   }
-   if($this->input->post('operation') == 'Edit')
-   {
-    $this->bootgrid_model->update($data, $this->input->post('employee_id'));
-    echo 'Data Updated';
-   }
-  }
- }
-
- function fetch_single_data()
- {
-  if($this->input->post('id'))
-  {
-   $data = $this->bootgrid_model->fetch_single_data($this->input->post('id'));
-   foreach($data as $row)
-   {
-    $output['name'] = $row['name'];
-    $output['address'] = $row['address'];
-    $output['gender'] = $row['gender'];
-    $output['designation'] = $row['designation'];
-    $output['age'] = $row['age'];
-   }
-   echo json_encode($output);
-  }
- }
-
- function delete_data()
- {
-  if($this->input->post('id'))
-  {
-   $this->bootgrid_model->delete($this->input->post('id'));
-   echo 'Data Deleted';
-  }
+  $data['sidebar'] = $this->load->view('user/sidebar','', true);
+  $this->load->view('user/header',$data);
+  $this->load->view('user/ques_type');
+  $this->load->view('user/footer');
  }
 }
-
 ?>

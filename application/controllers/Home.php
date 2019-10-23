@@ -14,4 +14,11 @@ class Home extends CI_Controller {
         $this->load->view('home', $data);
         $this->load->view('guest/footer');
 	}
+	public function questype(){
+		$data = [];
+		$data['sidebar'] = $this->load->view('guest/sidebar','', true);
+		$this->load->view('guest/header');
+        $this->load->view('home', $data);
+        $this->load->view('guest/footer');
+	}
 }	
